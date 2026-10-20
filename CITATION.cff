@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this method, please cite it as below."
+title: "Synapse: layers of small models"
+type: software
+authors:
+  - family-names: "Abhinav"
+    given-names: "Prayas"
+    website: "https://prayasabhinav.net"
+version: "1.0"
+license: CC-BY-4.0
+repository-code: "https://github.com/koherarchitecture/synapse"
+url: "https://github.com/koherarchitecture/synapse"
+keywords:
+  - small models
+  - split-domain cognition
+  - human in the loop
+  - abstention
+references:
+  - type: software
+    title: "rai: a model that checks if a set is complete"
+    authors:
+      - name: "Koher"
+    version: "0.3.8"
+    url: "https://github.com/koherarchitecture/rai"
+  - type: software
+    title: "RAM: a model that points at who is doing each act in office writing"
+    authors:
+      - name: "Koher"
+    version: "0.5"
+    url: "https://github.com/koherarchitecture/ram"
