@@ -49,7 +49,7 @@ python3 examples/office_note.py          # the worked example
 
 Use GitHub's *Cite this repository* button, which reads `CITATION.cff`, or:
 
-> Abhinav, P. (2026). *Synapse: layers of small models* (Version 1.3). Koher. https://github.com/koherarchitecture/synapse
+> Abhinav, P. (2026). *Synapse: layers of small models* (Version 1.4). Koher. https://github.com/koherarchitecture/synapse
 
 If you cite a model built on it, cite rai or RAM through their own `CITATION.cff` as well. The idea underneath, Split-Domain Cognition, is at https://splitdomaincognition.org.
 

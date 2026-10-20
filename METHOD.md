@@ -1,6 +1,6 @@
 # Synapse: the method
 
-*Prayas Abhinav, 20 October 2026. Version 1.3.*
+*Prayas Abhinav, 20 October 2026. Version 1.4.*
 
 ## Why Koher and SDC use small models
 
@@ -48,6 +48,7 @@ Small also describes a smaller copyright theft. A small model is trained on less
 - **20 October 2026, version 1.0 of this page.** Size, and hardware to run the model on that should be free of cost.
 - **Version 1.1, the same day,** added running in a browser.
 - **Version 1.2** added copyright.
+- **Version 1.4.** The window still holds; it describes more specific things now.
 
 ## Where it does not fit
 
