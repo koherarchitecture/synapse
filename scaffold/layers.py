@@ -1,8 +1,8 @@
 """Layers of small models, in code.
 
 Every model answers with a number or with nothing. Code checks each answer, a case
-nobody can settle goes to a person, and the only words anyone reads were written
-by people beforehand.
+no model can settle is handed on, to a person or to rules people wrote in advance,
+and the only words anyone reads were written by people beforehand.
 """
 
 PERSON = "person"
@@ -27,7 +27,8 @@ def run(layers, case, decide, words):
     decide: takes {name: chosen item} and returns a key of words, or None.
     words: every sentence a person may read, written by people.
 
-    Returns ("say", sentence) or (PERSON, where it stopped).
+    Returns ("say", sentence) or (PERSON, where it stopped). A PERSON case goes to a person,
+    or to rules people wrote in advance; which one is the caller's choice.
     """
     chosen = {}
     for name, model, choices in layers:

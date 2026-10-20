@@ -13,7 +13,7 @@
 
 The method is Prayas Abhinav's. He first set it out on 24 September 2026, and it is published by Koher. The method itself, in his words, is in **[METHOD.md](METHOD.md)**. This page gives its shape, two working models built on it, a small scaffold in code, and how to cite it.
 
-<p align="center"><img src="assets/layers.svg" width="860" alt="A case goes to several small models, each taking one small decision and answering with a number or nothing. Code checks every answer. The top call is made only from a list written in advance, and the words a person reads were written by people. Any don't-know goes to a person."></p>
+<p align="center"><img src="assets/layers.svg" width="860" alt="A case goes to several small models, each taking one small decision and answering with a number or nothing. Code checks every answer. The top call is made only from a list written in advance, and the words a person reads were written by people. Any don't-know goes to a person, or to rules people wrote in advance."></p>
 
 ## Two models built on it
 
@@ -29,8 +29,8 @@ Both are released by Koher. Each has its own reader, fine-tuned from the same 33
 
 Three small files in `scaffold/`, to copy into your own work.
 
-- **`layers.py`**, plain Python with no packages, is the part every system built this way shares. `window` lets an answer through only as the number of an item in the list the model was given; anything else, words included, counts as *don't know*. `run` puts a case through each layer, sends it to a person the moment a layer does not know, and makes the top call from a table people wrote, so every sentence a person reads comes from that table. A layer's list is either fixed beforehand or taken from the case itself, such as its sentences.
-- **`pointer.py`** asks one question of a text given as a list of sentences and answers with the number of the sentence that holds the answer, or nothing. It uses the base that rai's and RAM's readers were fine-tuned from, `deepset/minilm-uncased-squad2`, as it comes. It reads the first 380 or so tokens; an answer past that is not found, and the case goes to a person.
+- **`layers.py`**, plain Python with no packages, is the part every system built this way shares. `window` lets an answer through only as the number of an item in the list the model was given; anything else, words included, counts as *don't know*. `run` puts a case through each layer, stops it the moment a layer does not know and hands it on, to a person or to rules people wrote in advance, and makes the top call from a table people wrote, so every sentence a person reads comes from that table. A layer's list is either fixed beforehand or taken from the case itself, such as its sentences.
+- **`pointer.py`** asks one question of a text given as a list of sentences and answers with the number of the sentence that holds the answer, or nothing. It uses the base that rai's and RAM's readers were fine-tuned from, `deepset/minilm-uncased-squad2`, as it comes. It reads the first 380 or so tokens; an answer past that is not found, and the case is handed on.
 - **`chooser.py`**, with no packages, holds a model that scores labels to a fixed list: the number of the item it scores highest, or nothing when that score is under the threshold or the model's top label is not on the list. It has been tried once, with an AudioSet sound classifier (`MIT/ast-finetuned-audioset-10-10-0.4593`) on three made-up sounds, a pure tone, beeps and silence, against a list of doorbell, knock and smoke alarm. It returned nothing for all three, because each sound's top label (*Sine wave*, *Beep, bleep*, *Silence*) is not on the list. That trial shows refusal only; it has not yet been shown choosing a right item, and no threshold was measured for it.
 
 Before a layer is used, its threshold is set on cases keyed by hand before the model sees them, as in the example below.
@@ -41,7 +41,7 @@ pip install -r requirements.txt          # torch and transformers, for the point
 python3 examples/office_note.py          # the worked example
 ```
 
-**The worked example**, `examples/office_note.py`, asks of twenty short office notes *who will do it?* The notes and their keys were written by hand for it before the reader saw them. The threshold is set on ten notes and reported on the other ten, which it never saw. On those ten the pointer found 4 of the 5 people named and named nobody wrongly; the fifth note (*Imran will buy it tomorrow morning*) scored between *no answer* and the threshold, so it went to a person. Every note comes out as one of two fixed sentences, *Sent on: the note names who will do it* or *Returned: the note does not say who will do it*, or as a case for a person. Twenty notes show the method's shape; they are not a measurement of the reader. Tested with Python 3.12 and torch 2.14, with transformers 5.17 and again with 5.20 in a fresh install from `requirements.txt` alone; both gave the same results.
+**The worked example**, `examples/office_note.py`, asks of twenty short office notes *who will do it?* The notes and their keys were written by hand for it before the reader saw them. The threshold is set on ten notes and reported on the other ten, which it never saw. On those ten the pointer found 4 of the 5 people named and named nobody wrongly; the fifth note (*Imran will buy it tomorrow morning*) scored between *no answer* and the threshold, so it was handed on instead of answered. Every note comes out as one of two fixed sentences, *Sent on: the note names who will do it* or *Returned: the note does not say who will do it*, or as a case handed on. Twenty notes show the method's shape; they are not a measurement of the reader. Tested with Python 3.12 and torch 2.14, with transformers 5.17 and again with 5.20 in a fresh install from `requirements.txt` alone; both gave the same results.
 
 `scripts/check.sh` runs before every release: it refuses without `METHOD.md`, when a check fails, or when anything in the tree looks like a key.
 
@@ -49,7 +49,7 @@ python3 examples/office_note.py          # the worked example
 
 Use GitHub's *Cite this repository* button, which reads `CITATION.cff`, or:
 
-> Abhinav, P. (2026). *Synapse: layers of small models* (Version 1.2). Koher. https://github.com/koherarchitecture/synapse
+> Abhinav, P. (2026). *Synapse: layers of small models* (Version 1.3). Koher. https://github.com/koherarchitecture/synapse
 
 If you cite a model built on it, cite rai or RAM through their own `CITATION.cff` as well. The idea underneath, Split-Domain Cognition, is at https://splitdomaincognition.org.
 

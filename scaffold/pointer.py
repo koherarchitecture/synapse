@@ -3,7 +3,7 @@
 It answers with the number of the passage that holds the answer, or None. The reader is
 extractive (deepset/minilm-uncased-squad2, the base rai and RAM were trained from): it can
 only point at words already in the text, never write one. Only the first ~380 tokens are
-read; an answer past that is not found, so the case goes to a person.
+read; an answer past that is not found, so the case is handed on.
 """
 import torch
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer

@@ -45,7 +45,7 @@ assert run([("which passage", layer(None), PASSAGES), ("done by", layer(0), DONE
 assert run([("which passage", layer(1), PASSAGES), ("done by", layer("Meena"), DONE_BY)],
            NOTE, decide, WORDS) == (PERSON, "done by")
 
-# A top call outside the table goes to a person too.
+# A top call outside the table is handed on too.
 assert run([("done by", layer(0), DONE_BY)], NOTE, lambda chosen: "approve", WORDS) == (PERSON, "decide")
 
 # A layer's list can come from the case itself, such as its sentences, for a model that points into the text.

@@ -3,7 +3,8 @@
 One layer, a Pointer, asks "Who will do it?" and answers with the number of the sentence
 that names the doer, or with nothing. The threshold is set on one half of the notes and
 reported on the other half, which it never saw. Code makes the top call from three
-sentences written in advance; a note the pointer cannot settle goes to a person.
+sentences written in advance; a note the pointer cannot settle is handed on, to a person
+or to rules people wrote in advance.
 
 The notes and their keys were written by hand for this example, before the reader saw them.
 Twenty notes show the method's shape. They are not a measurement of the reader.
@@ -70,7 +71,7 @@ print(f"on the ten held-out notes: {found} of {named} doers found, "
       f"{wrong_yes(pointer, HELD_OUT, threshold)} wrong yes")
 
 
-# The whole layered run on each held-out note. A pointer that does not know sends the note to a person;
+# The whole layered run on each held-out note. A pointer that does not know hands the note on;
 # a pointer that finds nobody is a real answer, so "nobody named" is on the list it can choose from.
 def who(case, choices):
     k = pointer(case, choices[:-1])

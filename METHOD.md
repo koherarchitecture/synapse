@@ -1,6 +1,6 @@
 # Synapse: the method
 
-*Prayas Abhinav, 20 October 2026. Version 1.2.*
+*Prayas Abhinav, 20 October 2026. Version 1.3.*
 
 ## Why Koher and SDC use small models
 
