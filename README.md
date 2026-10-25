@@ -70,6 +70,10 @@ For Hindi, the multilingual encoders are the place to start; Hinglish written in
 
 `scripts/check.sh` runs before every release: it refuses without `METHOD.md`, when a check fails, or when anything in the tree looks like a key.
 
+## Versions
+
+Synapse uses semantic versioning from the release after 1.5: see [VERSIONING.md](VERSIONING.md). What each coming version adds, and how it is checked, is in [ROADMAP.md](ROADMAP.md).
+
 ## Cite it
 
 Use GitHub's *Cite this repository* button, which reads `CITATION.cff`, or:
