@@ -1,6 +1,6 @@
 # Synapse: the method
 
-*Prayas Abhinav, 20 October 2026. Version 1.4.*
+*Prayas Abhinav, 20 October 2026. Version 1.5, 25 October 2026.*
 
 ## Why Koher and SDC use small models
 
@@ -34,6 +34,14 @@ For each model that remains, identify the kind of data needed to train it. RAM's
 
 Then build the model.
 
+## What runs the layers
+
+Code runs the layers, never a model. A table written by people says which layers each kind of case goes through, in what order, and where a case goes when a layer does not know. One table can hold every small model in a system, so each model is loaded once and shared; that table is the router. A model that plans the order, or writes a query, a sub-question or a step for another model, is outside Synapse whatever its size, because it would take over what the fifth reason above keeps: which operation runs, and when.
+
+A harder job does not call for a bigger model. It usually means the function has not yet been broken into singular operations. Semantic search sounds like a job for a large model; it is one small operation. When a text is too long for a reader to read whole, such as a long office file or a collection of documents, and a person asks about one matter in it in their own words, a finder answers with the number of the passage closest in meaning to those words, or nothing. The words need not match: *ink for the printer* finds *the printer cartridges are over*. The finder is an encoder of 110 million parameters. The reader then asks its one fixed question of that passage only.
+
+Semantic search needs one kind of model: an encoder, which turns a passage into a list of numbers so that passages close in meaning get close numbers. Each passage is encoded once and kept, so a collection of any length is searched by comparing numbers. Two other kinds can follow it on the few passages it found, only where they are measured to help: a late-interaction model, which keeps numbers for every word of a passage rather than one set for the whole, and a cross-encoder, which reads the question and one passage together and returns a score. Both are slower than the encoder, and like it, both return numbers and write nothing. A model that rewrites the person's question, or writes an imagined answer to search with, is not needed, and it is outside Synapse.
+
 ## What small means
 
 Small means size. It also means that the hardware needed to run the model should be free of cost: no paid server and no fee for each answer. If needed, a model this small can be run in a web browser, on your own device.
@@ -49,6 +57,7 @@ Small also describes a smaller copyright theft. A small model is trained on less
 - **Version 1.1, the same day,** added running in a browser.
 - **Version 1.2** added copyright.
 - **Version 1.4.** The window still holds; it describes more specific things now.
+- **Version 1.5, 25 October 2026.** No bigger model is added to orchestrate the small ones, and semantic search becomes one more small layer.
 
 ## Where it does not fit
 

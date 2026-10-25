@@ -42,3 +42,19 @@ def run(layers, case, decide, words):
     if key not in words:
         return PERSON, "decide"
     return "say", words[key]
+
+
+def route(table, kind, case):
+    """Send a case to the pipeline a table written in advance names for its kind.
+
+    table: {kind: (layers, decide, words)}, one entry per kind of case. Several pipelines can share
+        a layer, so each small model is loaded once for the whole system.
+    kind: what kind of case this is, said by the sender or by a rule written in advance. No model
+        chooses the pipeline, its order or where a case goes when a layer does not know.
+
+    A kind the table does not hold goes to a person.
+    """
+    if kind not in table:
+        return PERSON, "route"
+    layers, decide, words = table[kind]
+    return run(layers, case, decide, words)

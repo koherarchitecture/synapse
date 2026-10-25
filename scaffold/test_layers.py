@@ -5,7 +5,7 @@ the number of an item in the list it was given, or None.
 """
 
 from chooser import chooser
-from layers import PERSON, run, window
+from layers import PERSON, route, run, window
 
 NOTE = "The caterer's bill came in on Monday. Meena will check it against the order."
 PASSAGES = NOTE.split(". ")
@@ -59,5 +59,14 @@ SOUNDS = ["doorbell", "knock"]
 assert chooser(lambda case: {"knock": 0.8, "music": 0.1}, 0.5)(None, SOUNDS) == 1
 assert chooser(lambda case: {"knock": 0.4, "music": 0.1}, 0.5)(None, SOUNDS) is None   # under the threshold
 assert chooser(lambda case: {"sine wave": 0.98, "knock": 0.01}, 0.5)(None, SOUNDS) is None  # top label not on the list
+
+# The router sends a case to the pipeline its table names for that kind; an unknown kind goes to a person.
+TABLE = {
+    "short": ([("which passage", layer(1), sentences), ("done by", layer(0), DONE_BY)], decide, WORDS),
+    "long": ([("which passage", layer(None), sentences)], decide, WORDS),
+}
+assert route(TABLE, "short", NOTE) == ("say", WORDS["named"])
+assert route(TABLE, "long", NOTE) == (PERSON, "which passage")
+assert route(TABLE, "invoice", NOTE) == (PERSON, "route")
 
 print("all checks pass")

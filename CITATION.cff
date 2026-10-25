@@ -6,8 +6,8 @@ authors:
   - family-names: "Abhinav"
     given-names: "Prayas"
     website: "https://prayasabhinav.net"
-version: "1.4"
-date-released: "2026-10-20"
+version: "1.5"
+date-released: "2026-10-25"
 license: CC-BY-4.0
 repository-code: "https://github.com/koherarchitecture/synapse"
 url: "https://github.com/koherarchitecture/synapse"
@@ -16,6 +16,7 @@ keywords:
   - split-domain cognition
   - human in the loop
   - abstention
+  - semantic search
 references:
   - type: software
     title: "rai: a model that checks if a set is complete"
