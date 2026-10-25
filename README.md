@@ -66,6 +66,8 @@ python3 examples/long_note.py            # semantic search in front of the point
 | cross-encoder | `cross-encoder/ms-marco-MiniLM-L6-v2` | 23M | Apache-2.0 | English | Mar 2022 |
 | cross-encoder | `ibm-granite/granite-embedding-reranker-english-r2` | 150M | Apache-2.0 | English | Aug 2025 |
 
+**Domain guides, planned for 1.9.0 to 1.11.0.** METHOD.md describes them: a small model trained for one field, usually from a cross-encoder in the table, on question and passage pairs labelled by people who know that field, such as farmers and agronomists. For an encoder, yellow leaves in wheat from nitrogen shortage and the yellow stripes of stripe rust are close together; a wheat grower reads them as different problems. Agriculture will get one guide for biodiversity, one for regions and one for the cause of a crop's problem. Each needs labelled pairs of its own, and none has been trained yet. These are Koher's own guides. Anyone applying Synapse chooses the scenario they apply it to, decides which models that scenario needs trained, and chooses the data to train them on.
+
 For Hindi, the multilingual encoders are the place to start; Hinglish written in Roman script has not been tested with any of them. Models under non-commercial licences, or licences of their makers' own, are left out of the table.
 
 `scripts/check.sh` runs before every release: it refuses without `METHOD.md`, when a check fails, or when anything in the tree looks like a key.
